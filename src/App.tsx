@@ -1,11 +1,11 @@
 import React from 'react'
-import { TiposBasicos } from './typescript/TiposBasicos';
+//import { TiposBasicos } from './typescript/TiposBasicos';
 const App = () => {
   return (
     <div>
       <h1>Introducción a Type Script with React</h1>
       <hr/>
-      <TiposBasicos />
+      {/*<TiposBasicos> </TiposBasicos>*/}
     </div>
   )
 }

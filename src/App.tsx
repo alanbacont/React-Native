@@ -4,7 +4,7 @@ import React from 'react'
 //import { Contador } from './components/Contador';
 //import { ContadorHook } from './components/ContadorHook';
 //import Login from './components/Login';
-import { Usuarios } from './components/Usuarios';
+import Usuarios from './components/Usuarios';
 
 const App = () => {
   return (

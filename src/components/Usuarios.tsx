@@ -1,68 +1,55 @@
-import { useEffect } from "react";
-import { reqRespApi } from "../api/reqRes";
-import { reqRespUsuarioListado } from "../interfaces/reqResp";
-import { useState } from "react";
 import { Usuario } from "../interfaces/reqResp";
+import useUsuarios from "./hooks/useUsuarios";
 
-export const Usuarios = () => {
-    const [usuarios, setUsuarios] = useState<Usuario[]>([]);
+function Usuarios() {
+const { usuarios, paginaSiguiente, paginaAnterior} = useUsuarios();
 
-    useEffect(() => {
-        reqRespApi.get<reqRespUsuarioListado>('/users')
-        .then(resp=> { 
-            //console.log(resp.data.data); 
-            setUsuarios(resp.data.data);
-        })
-        .catch(err => console.log(err))
-    }, [])
-
-    const renderItem = (usuario: Usuario) => {
-        return (
-            <tr key={usuario.id.toString()}>
-                <td>
-                    <img
-                        src={ usuario.avatar }
-                        alt={ usuario.first_name }
-                        style={{
-                            width: 50,
-                            borderRadius: 100
-                        }}
-                    >
-                    </img>
-                </td>
-                <td>
-                    { usuario.first_name } { usuario.last_name }
-                </td>
-                <td>
-                    { usuario.email }
-                </td>
-            </tr>
-        )
-    }
-
+  const renderItem = (usuario: Usuario) => {
     return (
-        <>
-            <h3>Usuarios</h3>
-            <table className = "table">
-                <thead>
-                    <tr>
-                        <th>
-                            Avatar
-                        </th>
-                        <th>
-                            Nombre
-                        </th>
-                        <th>
-                            email
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        usuarios.map(FicArgUsuario => renderItem(FicArgUsuario))
-                    }
-                </tbody>
-            </table>
-        </>
-    )
+      <tr key={usuario.id.toString()}>
+        <td>
+          <img
+            src={usuario.avatar}
+            alt={usuario.first_name}
+            style={{
+              width: 50,
+              borderRadius: 100,
+            }}
+          ></img>
+        </td>
+        <td>
+          {usuario.first_name} {usuario.last_name}
+        </td>
+        <td>{usuario.email}</td>
+      </tr>
+    );
+  };
+
+  return (
+    <>
+      <h3>Usuarios</h3>
+      <table className="table">
+        <tbody>
+          {usuarios.map((FicArgUsuario) => renderItem(FicArgUsuario))}
+        </tbody>
+      </table>
+      <button
+        className="btn btn-primary"
+        //onClick= { ficFnCargaUsuarios }
+        onClick= { paginaAnterior }
+        >
+        Anterior       
+        </button>
+        &nbsp;           
+        <button
+        className="btn btn-primary"
+        //onClick= { ficFnCargaUsuarios }
+        onClick= { paginaSiguiente }
+        >
+        Siguiente       
+        </button>
+    </>
+  );
 }
+
+export default Usuarios;

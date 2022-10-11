@@ -5,7 +5,7 @@ import React from 'react'
 //import { ContadorHook } from './components/ContadorHook';
 //import Login from './components/Login';
 //import Usuarios from './components/Usuarios';
-import { Formularios } from './components/hooks/Formularios';
+import { Formularios } from './components/Formularios';
 
 const App = () => {
   return (
